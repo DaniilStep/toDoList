@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+@import './assets/null.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap');
+
+@import "primeicons/primeicons.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono&display=swap');
+
+html{
+	--pink: #e85aad;
+	--color: #6e717e;
+	--back: #f8f9fa;
+}

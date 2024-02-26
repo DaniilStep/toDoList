@@ -1,0 +1,45 @@
+<div class="wrapper">
+	<div class="title">Задачи</div>
+	<div class="addNew">
+
+		<app-button (click)="changeVisible()">{{buttonText}}</app-button>
+
+		<div class="addNew__input">
+			@if (visible) {
+				<ng-container *ngTemplateOutlet="addNew"></ng-container>
+			}
+		</div>
+
+	</div>
+	<div class="tasks">
+		<div class="tasks__block">
+			<div class="tasks__title">Текущие</div>
+			<div class="tasks__current">
+				<ul>
+					@for (i of tasks; track $index) {
+						<li [class.finished]="finished" 
+						(click)="finishTask()">
+						@if (!finished) {
+							<i class="pi pi-circle"></i>  {{i}}
+						}
+						@else {
+							<i class="pi pi-circle-fill"></i>  {{i}}
+						}
+					</li>
+					}
+				</ul>
+			</div>
+		</div>
+		<div class="tasks__block">
+			<div class="tasks__title">Выполненные</div>
+			<div class="tasks__current">
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<ng-template #addNew>
+	<input type="text" placeholder="Введите новую задачу" [(ngModel)]="task">
+	<app-button (click)="addNewTask(task)">Добавить</app-button>
+</ng-template>

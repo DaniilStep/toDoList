@@ -1,0 +1,49 @@
+<div class="wrapper">
+	<div class="left">
+		<div class="left__title title">Курс валют</div>
+		<ul class="left__currency">
+			<li>RUB-USD - <input [(ngModel)]="rubUSD" (keyup.enter)="apply(rubUSD, btcUSD)"></li>
+			<li>BTC-USD - <input [(ngModel)]="btcUSD" (keyup.enter)="apply(rubUSD, btcUSD)"></li>
+			<li>BTC-RUB - {{btcRUB | number: '1.0-0'}}</li>
+			<li><app-button  (click)="apply(rubUSD, btcUSD)">Apply</app-button></li>
+		</ul>
+	</div>
+	<div class="center">
+		<div class="center__title title">Текущие финансы</div>
+		<div class="center__cover">
+			<div class="center__total flex">
+				<p>Биткойны</p>
+				<p>{{bitcoin}}</p>
+			</div>
+			<div class="center__rub flex">
+				<p>Рубли</p>
+				<p>{{bitcoin * btcRUB | number: '1.0-0' }}</p>
+			</div>
+			<div class="center__usd flex">
+				<p>USD</p>
+				<p>{{bitcoin * btcUSD | currency }}</p>
+			</div>
+		</div>
+	</div>
+	<div class="right">
+		<div class="right__title title">Special</div>
+		<div class="right__cover">
+			<div class="right__one flex">
+				<p>0.0022</p>
+				<p>{{0.0022 * btcRUB | number: '1.0-0'}}</p>
+			</div>
+			<div class="right__two flex">
+				<p>0.00375</p>
+				<p>{{0.00375 * btcRUB | number: '1.0-0'}}</p>
+			</div>
+			<div class="right__two flex">
+				<p>0.00073</p>
+				<p>{{0.0007342 * btcRUB | number: '1.0-0'}}</p>
+			</div>
+		</div>
+	</div>
+	<div class="halving">
+		<div class="halving__title title">Halving in</div>
+		<div class="halving__date flex">{{halving}} days</div>
+	</div>
+</div>

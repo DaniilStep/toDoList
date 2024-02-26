@@ -1,0 +1,60 @@
+<div class="wrapper">
+	<div class="left">
+		<ng-container>
+			@if (turnedOn) {
+				<p>Подогрев включен</p>
+			}
+			@else {
+				<p>Подогрев выключен</p>
+			}
+		</ng-container>
+		<br>
+	
+		<app-press-button (isHeating)="switch($event)"></app-press-button>
+	
+		<!-- <app-test #counter></app-test>
+		<app-button (click)="counter.increment()" >+</app-button>
+		<app-button (click)="counter.decrement()">-</app-button> -->
+	
+		<!-- <app-test>
+			<p #fromParent>Привет, {{name}}</p>
+		</app-test> -->
+	
+		@switch (statement) {
+			@case (1) {
+				One
+			}
+			@case (2) {
+				{{statement * 2}}
+			}
+			@default {
+				Default
+			}
+		}
+	
+		<app-button (click)="plus()">+</app-button>
+		<app-button (click)="minus()">-</app-button>
+	
+		<br>
+		<br>
+		
+		<div class="service">
+			<p class="service__title">Testing Service</p>
+			<input [(ngModel)]="newName">
+			<br>
+			<app-button (click)="addItem(newName)">Add</app-button>
+			<p>Name: {{newName}}</p>
+			<ul>
+				@for (item of items; track $index) {
+					<li>{{item}}</li>
+				}
+			</ul>
+		</div>
+	</div>
+	<div class="center">
+		<app-form></app-form>
+	</div>
+	<div class="right">
+		<app-server></app-server>
+	</div>
+</div>

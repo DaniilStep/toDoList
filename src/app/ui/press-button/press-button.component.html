@@ -1,0 +1,8 @@
+<div class="btn" (click)="btnClick()">
+	<img src="./assets/img/panel/heater.png" alt="heater">
+	<div class="dots">
+		<div class="dot" [class.red]="level >= 1"></div>
+		<div class="dot" [class.red]="level >= 2"></div>
+		<div class="dot" [class.red]="level >= 3"></div>
+	</div>
+</div>
