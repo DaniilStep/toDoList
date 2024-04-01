@@ -16,7 +16,8 @@ export class ItemComponent {
 	@Output() onAddToBasket: EventEmitter<Cards> = new EventEmitter();
 
 	public addToBasket() {
-    //moe vazhnee
+    //moe vazhnee 
+		//hui 
 		this.onAddToBasket.emit(this.card);
 
 		// Не работает отображение миниатюры в корзине
