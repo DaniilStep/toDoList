@@ -1,0 +1,14 @@
+
+	<div class="card">
+		<div class="card__img">
+			<img src={{card.source}} alt="img">
+		</div>
+		<div class="card__title">
+			<span>
+				{{card.title}}
+			</span>
+		</div>
+		<button class="card__button" (click)="addToBasket(card)">
+			{{card.price}} €
+		</button>
+	</div>

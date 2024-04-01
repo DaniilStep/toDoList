@@ -1,0 +1,40 @@
+
+<main>
+	<div class="wrapper">
+		<div class="title">
+			<span>Корзина</span>
+		</div>
+		<div class="back">
+			<button routerLink="/panel">
+				<i class="pi pi-arrow-left"></i>
+			</button>
+		</div>
+		<div class="container">
+			<div class="container__item">
+				@for (i of productList; track $index) {
+					<div class="item">
+						<div class="item__title padding">
+							<button (click)="deleteData(i.id)">
+								<i class="pi pi-times"></i>
+							</button>
+							{{i.title}}
+						</div>
+						<div class="item__price padding">
+							{{i.price | currency: 'EUR'}}
+						</div>
+					</div>
+				}
+			</div>
+			<div class="container__text center">
+				<span>Итог</span>
+			</div>
+			<div class="container__total center">
+				{{sum | currency: 'EUR'}}
+			</div>
+		</div>
+		<button class="checkout" (click)="filterTest()">
+			<p>Оформить</p>
+			<i class="pi pi-check"></i>
+		</button>
+	</div>
+</main>

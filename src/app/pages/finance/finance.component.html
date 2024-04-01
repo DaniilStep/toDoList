@@ -1,11 +1,12 @@
-<div class="wrapper">
+<!-- <div class="wrapper">
 	<div class="left">
 		<div class="left__title title">Курс валют</div>
 		<ul class="left__currency">
-			<li>RUB-USD - <input [(ngModel)]="rubUSD" (keyup.enter)="apply(rubUSD, btcUSD)"></li>
-			<li>BTC-USD - <input [(ngModel)]="btcUSD" (keyup.enter)="apply(rubUSD, btcUSD)"></li>
-			<li>BTC-RUB - {{btcRUB | number: '1.0-0'}}</li>
-			<li><app-button  (click)="apply(rubUSD, btcUSD)">Apply</app-button></li>
+			<li>USD-RUB: {{(usdRubRate$ | async)?.data?.amount | number: '0.2-2' }}</li>
+			<li>BTC-USD: {{(btcUsdRate$ | async)?.data?.amount | currency : 'USD' : 'symbol' : '0.0-0' }}</li>
+			<li>BTC-RUB: {{(btcRubRate$ | async) | number: '0.0-0'}}</li>
+			
+			<li><app-button  (click)="refresh()">Refresh</app-button></li>
 		</ul>
 	</div>
 	<div class="center">
@@ -13,15 +14,15 @@
 		<div class="center__cover">
 			<div class="center__total flex">
 				<p>Биткойны</p>
-				<p>{{bitcoin}}</p>
+				<p>{{(bitcoinAmount$ | async) | number: '0.0-7'}}</p>
 			</div>
 			<div class="center__rub flex">
 				<p>Рубли</p>
-				<p>{{bitcoin * btcRUB | number: '1.0-0' }}</p>
+				<p>{{(rubAmount$ | async) | number: '0.0-0'}}</p>	
 			</div>
 			<div class="center__usd flex">
 				<p>USD</p>
-				<p>{{bitcoin * btcUSD | currency }}</p>
+				<p> {{(usdAmount$ | async) | currency }}</p>
 			</div>
 		</div>
 	</div>
@@ -30,15 +31,16 @@
 		<div class="right__cover">
 			<div class="right__one flex">
 				<p>0.0022</p>
-				<p>{{0.0022 * btcRUB | number: '1.0-0'}}</p>
+				<p>{{(firstSpecialAmount$ | async) | number: '0.0-0'}}</p>
+				
 			</div>
 			<div class="right__two flex">
 				<p>0.00375</p>
-				<p>{{0.00375 * btcRUB | number: '1.0-0'}}</p>
+				<p>{{(secondSpecialAmount$ | async) | number: '0.0-0'}}</p>
 			</div>
 			<div class="right__two flex">
-				<p>0.00073</p>
-				<p>{{0.0007342 * btcRUB | number: '1.0-0'}}</p>
+				<p>0.00079</p>
+				<p>{{(thirdSpecialAmount$ | async) | number: '0.0-0'}}</p>
 			</div>
 		</div>
 	</div>
@@ -47,3 +49,70 @@
 		<div class="halving__date flex">{{halving}} days</div>
 	</div>
 </div>
+@if (this.financeApiService.errorMessage) {
+	<div class="error">{{this.financeApiService.errorMessage}}error</div>
+} -->
+
+
+<main>
+	<div class="wrapper">
+		<div class="title">
+			<span>Финансы</span>
+		</div>
+		<div class="halving">
+			<div class="halving__title">
+				<span>halving in</span>
+			</div>
+			<div class="halving__date">
+				<div class="date__day">{{halving}}</div>
+				<div class="date__text">days</div>
+			</div>
+		</div>
+		<div class="rates">
+			<div class="rates__title">
+				<span>курс валют</span>
+			</div>
+			<div class="rates__common">
+				<ul>
+					<li>USD-RUB: {{(usdRubRate$ | async)?.data?.amount | number: '0.2-2' }}</li>
+					<li>BTC-USD: {{(btcUsdRate$ | async)?.data?.amount | currency : 'USD' : 'symbol' : '0.0-0' }}</li>
+					<li>BTC-RUB: {{(btcRubRate$ | async) | number: '0.0-0'}}</li>
+					<li><button (click)="refresh()"><i class="pi pi-refresh" [class.pi-spin]="isLoading"></i></button></li>
+				</ul>
+			</div>
+		</div>
+		<div class="finances">
+			<div class="finances__total">
+				<div class="total__title">
+					<span>текущие финансы</span>
+				</div>
+				<div class="total__common">
+					<div class="btc">Биткойны</div>
+					<div class="btc__quantity">
+						{{(bitcoinAmount$ | async) | number: '0.0-7'}}
+					</div>
+					<div class="rub">Рубли</div>
+					<div class="rub__quantity">
+						{{(rubAmount$ | async) | number: '0.0-0'}}
+					</div>
+					<div class="usd">USD</div>
+					<div class="usd__quantity">
+						{{(usdAmount$ | async) | currency }}
+					</div>
+				</div>
+			</div>
+			<div class="finances__special">
+				<div class="special__title">
+					<span>special</span>
+				</div>
+				<div class="special__common">
+					<p>0.0022</p>
+					<div>{{(firstSpecialAmount$ | async) | number: '0.0-0'}}</div>
+					<p>0.00375</p>
+					<div>{{(secondSpecialAmount$ | async) | number: '0.0-0'}}</div>
+				</div>
+			</div>
+			<!-- <p>{{(rubAmount$ | async) | number: '0.0-0'}} rub</p> -->
+		</div>
+	</div>
+</main>

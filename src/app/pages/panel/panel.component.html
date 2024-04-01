@@ -1,4 +1,4 @@
-<div class="wrapper">
+<!-- <div class="wrapper">
 	<div class="left">
 		<ng-container>
 			@if (turnedOn) {
@@ -11,15 +11,6 @@
 		<br>
 	
 		<app-press-button (isHeating)="switch($event)"></app-press-button>
-	
-		<!-- <app-test #counter></app-test>
-		<app-button (click)="counter.increment()" >+</app-button>
-		<app-button (click)="counter.decrement()">-</app-button> -->
-	
-		<!-- <app-test>
-			<p #fromParent>Привет, {{name}}</p>
-		</app-test> -->
-	
 		@switch (statement) {
 			@case (1) {
 				One
@@ -57,4 +48,49 @@
 	<div class="right">
 		<app-server></app-server>
 	</div>
-</div>
+	<div class="right_post">
+		<app-post></app-post>
+	</div>
+</div> -->
+
+<main>
+	<div class="wrapper">
+		<div class="title">
+			<span>Маркет</span>
+		</div>
+		<div class="settings">
+			<button routerLink="/panel/settings">
+				<i class="pi pi-cog"></i>
+			</button>
+		</div>
+		<div class="basket">
+			<button routerLink="/panel/card">
+				<i class="pi pi-shopping-cart"></i>
+				@if (basket.length) {
+					<div class="info">
+						{{basket.length}}
+					</div>
+				}
+			</button>
+
+		</div>
+		@for (item of cards; track $index) {
+
+			<app-item [card]="item"></app-item>
+
+			<!-- <div class="card">
+				<div class="card__img">
+					<img src={{item.source}} alt="img">
+				</div>
+				<div class="card__title">
+					<span>
+						{{item.title}}
+					</span>
+				</div>
+				<button class="card__button" (click)="addToBasket(item)">
+					{{item.price}} €
+				</button>
+			</div> -->
+		}
+	</div>
+</main>

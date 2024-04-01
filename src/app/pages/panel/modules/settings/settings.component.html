@@ -1,0 +1,78 @@
+<main>
+	<div class="wrapper">
+		<div class="title">
+			<span>Редактирование товаров</span>
+		</div>
+		<div class="back">
+			<button routerLink="/panel">
+				<i class="pi pi-arrow-left"></i>
+			</button>
+		</div>
+
+		@if (dataLoading) {
+			<div class="loading">
+				<span>Загрузка </span> <i class="pi pi-spinner pi-spin"></i>
+			</div>
+		}
+
+		@for (i of cards; track $index) {
+
+			@if (!i.isChanging) {
+				<div class="item">
+					<div class="item__source">
+						source
+					</div>
+					<div class="item__title">
+						{{i.title}}
+					</div>
+					<div class="item__price">
+						{{i.price | currency: 'EUR'}}
+					</div>
+					<div class="delete">
+						<button (click)="deleteData(i)">	
+							<i class="pi pi-times"></i>
+						</button>
+					</div>
+					<div class="accept">
+						<button (click)="toggleChange(i)">	
+							<i class="pi pi-pencil"></i>
+						</button>
+					</div>
+					
+				</div>
+			}
+			@else {
+				<form class="item" [formGroup]="changeCardForm">	
+
+					<div class="item__source">
+						<input type="text" name="source" formControlName="source" placeholder="source">
+					</div>
+					<div class="item__title">
+						<input type="text" name="title" formControlName="title" placeholder="title">
+					</div>
+					<div class="item__price">
+						<input type="text" name="price" formControlName="price" placeholder="price">
+					</div>
+
+					<div class="delete">
+						<button (click)="deleteData(i)">	
+							<i class="pi pi-times"></i>
+						</button>
+					</div>
+
+
+					<div class="accept">
+						<button (click)="chandeData(i)">	
+							@if (!i.isChanging) {
+								<i class="pi pi-pencil"></i>
+							}
+							@else {
+								<i class="pi pi-check"></i>
+							}
+						</button>
+					</div>
+				</form>
+			}
+		}
+	</div>
+</main>

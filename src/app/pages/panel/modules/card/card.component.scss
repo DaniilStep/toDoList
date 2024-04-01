@@ -1,0 +1,139 @@
+@import '../../../../../functions.scss';
+
+
+main{
+	display: flex;
+	justify-content: center;	
+	align-items: center;
+	height: 90vh;
+	font-family: manrope;
+	margin: toRem(15) toRem(30) 0;
+	
+
+	.wrapper{
+		max-height: toRem(700);
+		width: toRem(1400);
+		display: grid;
+		grid-template-rows: repeat(7, 1fr);
+		grid-template-columns: repeat(4, 1fr);
+		grid-gap: toRem(15);
+		height: 100%;
+	}
+
+	.title{
+		grid-column: 1/4;
+		grid-row: 1/2;
+		font-size: toRem(70);
+		font-weight: 300;
+
+		display: flex;
+		align-items: center;
+	}
+
+	.back{
+		grid-row: 1/2;
+		grid-column: 4/5;
+		display: flex;
+		align-items: center;
+		justify-content: end;
+		font-size: 3rem;
+
+		button{
+			background-color: var(--backGrey);
+			background-color: #000;
+			color: #fff;
+			padding: toRem(17);
+			border-radius: 20px;
+		}
+		
+		i{
+			font-size: 2.5rem;
+			
+		}
+	}
+
+	.container{
+		border: 1px solid #000;
+		border-radius: toRem(55);
+		font-size: toRem(25);
+		overflow: hidden;
+		grid-column: 2/4;
+		grid-row: 2/7;
+
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(5, 1fr);
+		// row-gap: toRem(10);
+
+		.container__item{
+			grid-row: 1/5;
+			grid-column: 1/3;
+
+			display: grid;
+			grid-template-rows: repeat(6, toRem(60));
+			grid-auto-flow: row;
+			grid-auto-rows: toRem(60);
+			overflow: scroll;
+
+
+			.item{
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+
+				div{
+					display: flex;
+					align-items: center;
+				}
+
+				.item__title{
+					border-right: 1px solid #000;
+					padding: 0 toRem(50) 0;
+
+					i{
+						padding: toRem(10);
+						font-size: 1.5rem;
+						background-color: #fff;
+					}
+				}
+
+				.item__price{
+					justify-content: end;
+					padding-right: toRem(100);
+				}
+			}
+		}
+
+		.container__text{
+			grid-row: 5/6;
+			grid-column: 1/2;
+			background-color: #000;
+			color: #fff;
+		}
+
+		.container__total{
+			grid-row: 5/6;
+			grid-column: 2/3;
+			background-color: #000;
+			color: #fff;
+		}
+
+		.center{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+
+	.checkout{
+		grid-row: 6/7;
+		grid-column: 4/5;
+		background-color: #f96e17;
+		color: #fff;
+		font-size: toRem(25);
+
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		border-radius: toRem(55);
+	}
+}

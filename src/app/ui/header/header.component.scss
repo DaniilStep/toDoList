@@ -1,55 +1,94 @@
-$color: #6e717e;
-$back: #f8f9fa;
-$pink: #e85aad;
+
+@import '../../../functions.scss';
 
 header{
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	width: 100vw;
-	height: 100px;
-	// border: 1px solid #000;
-	font-family: Montserrat;
-	font-size: 24px;
-	padding: 0 20px;
-	color: $color;
-	background-color: $back;
-	background-image: url('/assets/img/header/bg3.svg');
-	background-size: 200% auto;
-	background-position: -50px -200px;
+	
+	border-bottom-style: solid;
+	border-color: #000;
+	border-width: 1px;
+	height: toRem(65);
+	font-family: manrope;
+	margin: 0 30px;
 
-	.header__left{
+
+	.wrapper{
+		max-width: toRem(1400);
+		margin: 0 auto;
 		display: flex;
-		justify-content: space-between;
+		height: 100%;
 		align-items: center;
-		width: 200px;
+		justify-content: space-between;
 		
 
-		.header__burger{
-			color: $color;
-			margin-right: 20px;
+		.header__left{
+			display: flex;
+			align-items: center;
 
-			i{
-				font-size: 2rem;
-				background-color: $back;
+			.header__burger{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				width: 27px;
+				height: 27px;
+				margin-right: 21px;
+
+				background-color: #000;
+				color: #fff;
+				font-size: 1.2em;
+				border-radius: 7px;
+			}
+
+			.header__logo{
+				font-size: 30px;
+				color: #000;
+				margin-right: 10px;
+			}
+
+			.header__title{
+				width: 120px;
+				font-size: toRem(14);
 			}
 		}
 
-		a{
-			color: $pink;
-			font-family: kalam;
-			font-size: 50px;
+		.header__right{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			
+			width: toRem(75);
+			height: toRem(30);
+			background-color: #000;
+			color: #fff;
+			font-size: 12px;
+			border-radius: 10px;
 		}
 	}
+}
 
-	.header__title{
-		font-size: 30px;
-		background-color: $pink;
-		background-clip: text;
-		color: transparent;
-	}
+@media (max-width: 767px) {
 	
-	.header__right{
-		color: $color;
+	header{
+		
+		.wrapper{
+			// margin: 0 30px;
+
+			.header__left{
+
+				.header__logo{
+					font-size: 24px;
+				}
+
+				.header__title{
+					font-size: 12px;
+				}
+			}
+		}
 	}
-} 
+}
+
+@media (max-width: 426px) {
+	.header__title{
+		display: none;
+	}
+}
