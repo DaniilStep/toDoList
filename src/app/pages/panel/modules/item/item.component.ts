@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Cards, Path } from '../../models/cards.model';
 import { PanelService } from '../../services/panel.service';
 import { first } from 'rxjs';
@@ -11,12 +11,12 @@ import { first } from 'rxjs';
 export class ItemComponent {
 	@Input() card!: Cards;
 
-	constructor(private PanelService: PanelService) {}
+	constructor() {}
 
-	public addToBasket(i: Cards) {
-		this.PanelService.addCard(Path.basket, i).pipe(
-			first()
-		).subscribe()
+	@Output() onAddToBasket: EventEmitter<Cards> = new EventEmitter();
+
+	public addToBasket() {
+		this.onAddToBasket.emit(this.card);
 
 		// Не работает отображение миниатюры в корзине
 		// angular material

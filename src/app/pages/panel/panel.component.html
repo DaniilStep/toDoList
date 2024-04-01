@@ -76,7 +76,7 @@
 		</div>
 		@for (item of cards; track $index) {
 
-			<app-item [card]="item"></app-item>
+			<app-item (onAddToBasket)="addToBasket($event)" [card]="item"></app-item>
 
 			<!-- <div class="card">
 				<div class="card__img">
