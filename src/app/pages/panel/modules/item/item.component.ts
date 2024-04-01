@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Cards, Path } from '../../models/cards.model';
-import { PanelService } from '../../services/panel.service';
-import { first } from 'rxjs';
+import { Cards } from '../../models';
 
 @Component({
   selector: 'app-item',
@@ -11,15 +9,16 @@ import { first } from 'rxjs';
 export class ItemComponent {
 	@Input() card!: Cards;
 
+	isChanging: boolean = false;
+
 	constructor() {}
 
 	@Output() onAddToBasket: EventEmitter<Cards> = new EventEmitter();
 
 	public addToBasket() {
-    //moe vazhnee 
-		//hui 
 		this.onAddToBasket.emit(this.card);
 
+		// https://www.conventionalcommits.org/ru/v1.0.0/
 		// Не работает отображение миниатюры в корзине
 		// angular material
 		// primeNG
