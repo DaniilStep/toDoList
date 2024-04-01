@@ -66,31 +66,15 @@
 		<div class="basket">
 			<button routerLink="/panel/card">
 				<i class="pi pi-shopping-cart"></i>
-				@if (basket.length) {
+				@if (basket?.length) {
 					<div class="info">
-						{{basket.length}}
+						{{basket?.length}}
 					</div>
 				}
 			</button>
-
 		</div>
 		@for (item of cards; track $index) {
-
 			<app-item (onAddToBasket)="addToBasket($event)" [card]="item"></app-item>
-
-			<!-- <div class="card">
-				<div class="card__img">
-					<img src={{item.source}} alt="img">
-				</div>
-				<div class="card__title">
-					<span>
-						{{item.title}}
-					</span>
-				</div>
-				<button class="card__button" (click)="addToBasket(item)">
-					{{item.price}} €
-				</button>
-			</div> -->
 		}
 	</div>
 </main>

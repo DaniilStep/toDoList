@@ -20,7 +20,7 @@ export class PanelComponent implements OnInit {
 
 	cardComponent!: Cards;
 
-	basket!: Cards[];
+	basket: Cards[] | undefined;
 
 	addCardForm!: FormGroup;
 
