@@ -20,6 +20,8 @@ export class PanelComponent implements OnInit {
 
 	cardComponent!: Cards;
 
+	cardIsChanging: boolean = false;
+
 	basket: Cards[] | undefined;
 
 	addCardForm!: FormGroup;
@@ -67,5 +69,9 @@ export class PanelComponent implements OnInit {
 		).subscribe(() => {
 			this.getBasket();
 		});
+	}
+
+	public toggleChange() {
+		this.cardIsChanging = !this.cardIsChanging;
 	}
 }

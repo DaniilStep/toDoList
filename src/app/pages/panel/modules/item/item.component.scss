@@ -1,7 +1,7 @@
 @import '../../../../../functions.scss';
 
 .card{
-	overflow: hidden;
+	// overflow: hidden;
 	border: 1px solid #000;
 	border-radius: toRem(40);
 	display: grid;
@@ -9,7 +9,56 @@
 	text-align: center;
 	font-size: toRem(20);
 	height: 100%;
+	position: relative;
 
+	
+
+	.button{
+		
+		position: absolute;
+		z-index: 10;
+		right: -10px;
+
+		width: toRem(40);
+		height: toRem(40);
+		border-radius: 50%;
+		background-color: var(--orange);
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		transition: all 0.15s ease-in-out;
+
+		i{
+			color: #fff;
+		}
+
+		&:hover{
+			background-color: var(--orangeHover);
+		}
+
+		&:active{
+			background-color: var(--orangeActive);
+		}
+	}
+
+	.hide{
+		display: none;
+	}
+
+	.card__change{
+		top: toRem(-12);
+	}
+
+	.card__accept{
+		top: toRem(40);
+	}
+
+	.card__delete{
+		top: toRem(90);
+	}
+	
 	.card__img{
 		overflow: hidden;
 		grid-row: 1/5;
@@ -32,6 +81,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		margin: 10px;
+		border-radius: toRem(28);
 	}
 
 	.card__button{
@@ -39,7 +90,7 @@
 
 		font-size: toRem(20);
 		background-color: var(--orange);
-		color: #e41616;
+		color: #fff;
 		margin: 0 toRem(10) toRem(10);
 		border-radius: toRem(34);
 		transition: all 0.15s ease-in-out;
@@ -50,6 +101,27 @@
 
 		&:active{
 			background-color: var(--orangeActive);
+		}
+	}
+
+	.grey{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: var(--backLight);
+
+		input{
+			background-color: var(--backLight);
+			font-size: toRem(20);
+			text-align: center;
+		}
+
+		&:hover{
+			background-color: var(--backLight);
+		}
+
+		&:active{
+			background-color: var(--backLight);	
 		}
 	}
 }
