@@ -1,4 +1,29 @@
 
+
+<div class="card">
+	@if (cardIsChanging) {
+		<button class="card__change button" (click)="toggleChange()">
+			<i class="pi pi-pencil"></i>
+		</button>
+	
+	}
+	<div class="card__img">
+		<img src={{card.source}} alt="img">
+	</div>
+	<div class="card__title">
+		<span>
+			{{card.title}}
+		</span>
+	</div>
+	<div class="card__price">
+		{{card.price}} €
+	</div>
+	<div class="card__cart" (click)="addToBasket()">
+		<i class="pi pi-shopping-cart"></i>
+	</div>
+</div>
+
+<!-- 
 	@if (!isChanging) {
 		<div class="card">
 			@if (cardIsChanging) {
@@ -46,23 +71,5 @@
 			<div class="card__button grey">
 				<input type="text" name="price" formControlName="price" placeholder="price">
 			</div>
-
-			<!-- <div class="delete">
-				<button (click)="deleteData(i)">	
-					<i class="pi pi-times"></i>
-				</button>
-			</div> -->
-
-
-			<!-- <div class="accept">
-				<button (click)="chandeData(i)">	
-					@if (!i.isChanging) {
-						<i class="pi pi-pencil"></i>
-					}
-					@else {
-						<i class="pi pi-check"></i>
-					}
-				</button>
-			</div> -->
 		</form>
-	}
+	} -->
