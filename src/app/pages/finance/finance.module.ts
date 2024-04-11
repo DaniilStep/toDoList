@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { FinanceApiService } from './api/finance-api.service';
 
 
+
 @NgModule({
   declarations: [
     FinanceComponent
@@ -16,7 +17,7 @@ import { FinanceApiService } from './api/finance-api.service';
     CommonModule,
 	 FinanceRoutingModule,
 	 ButtonModule,
-	 FormsModule,
+	  FormsModule,
 	],
 	providers: [
 	  FinanceApiService,

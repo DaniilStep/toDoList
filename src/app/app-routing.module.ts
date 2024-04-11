@@ -23,6 +23,10 @@ const routes: Routes = [
 		loadChildren: () => import('./pages/about/about.module').then(m => m.AboutModule)
 	},
 	{
+		path: 'material',
+		loadChildren: () => import('./pages/material/material.module').then(m => m.MaterialModule)
+	},
+	{
 		path: 'not-found',
 		loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule)
 	},

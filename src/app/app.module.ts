@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderModule } from './ui/header/header.module';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
     AppComponent,
+    
   ],
   imports: [
    BrowserModule,
@@ -17,8 +19,12 @@ import { HeaderModule } from './ui/header/header.module';
 	FormsModule,
 	ReactiveFormsModule,
 	HttpClientModule,
-	HeaderModule,
+	  HeaderModule,
+
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    provideAnimationsAsync()
+  ]
 })
 export class AppModule { }

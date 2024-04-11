@@ -1,0 +1,12 @@
+@import '../../../functions.scss';
+
+main{
+	margin: toRem(30) toRem(50);
+
+	.wrapper{
+
+		.card{
+			top: 0;
+		}
+	}
+}
