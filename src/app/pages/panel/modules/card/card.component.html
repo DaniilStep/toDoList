@@ -2,7 +2,7 @@
 <main>
 	<div class="wrapper">
 		<div class="title">
-			<span>Корзина</span>
+			<span>Shopping cart</span>
 		</div>
 		<div class="back">
 			<button routerLink="/panel">
@@ -10,16 +10,52 @@
 			</button>
 		</div>
 		<div class="container">
+			<div class="container__quantity">
+				You have <span class="quantity_orange"> {{productList.length}} </span>
+
+				@if (productList.length == 1) {<span class="quantity_orange"> item</span>} 
+				@else {<span class="quantity_orange"> items</span>}
+
+				in your cart
+			</div>
+			<div class="container__title">
+				<div class="title__name">product</div>
+				<div class="title__price">price</div>
+			</div>
+			@for (i of productList; track $index) {
+				<div class="container__item">
+					<div class="item__img"><img src={{i.source}} alt="img"></div>
+					<div class="item__title">
+						{{i.title}}
+					</div>
+					<div class="item__price">
+						{{i.price | currency: 'EUR'}}
+						<button (click)="deleteData(i.id)">
+							<i class="pi pi-times"></i>
+						</button>
+					</div>
+				</div>
+			}
+			<div class="order">
+				<button class="order__button" (click)="order()">
+					Continue
+				</button>
+			</div>
+			<div class="sum">
+				<span>Total: </span> {{sum | currency: 'EUR'}}
+			</div>
+		</div>
+		<!-- <div class="container">
 			<div class="container__item">
 				@for (i of productList; track $index) {
 					<div class="item">
-						<div class="item__title padding">
+						<div class="item__title">
 							<button (click)="deleteData(i.id)">
 								<i class="pi pi-times"></i>
 							</button>
 							{{i.title}}
 						</div>
-						<div class="item__price padding">
+						<div class="item__price">
 							{{i.price | currency: 'EUR'}}
 						</div>
 					</div>
@@ -31,10 +67,10 @@
 			<div class="container__total center">
 				{{sum | currency: 'EUR'}}
 			</div>
-		</div>
-		<button class="checkout" (click)="filterTest()">
+		</div> -->
+		<!-- <button class="checkout" (click)="filterTest()">
 			<p>Оформить</p>
 			<i class="pi pi-check"></i>
-		</button>
+		</button> -->
 	</div>
 </main>

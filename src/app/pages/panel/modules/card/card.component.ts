@@ -52,4 +52,10 @@ export class CardComponent implements OnInit {
 	public getSum() {
 		this.sum = this.productList.reduce((total, i) => total + +i.price, 0)
 	}
+
+	public order() {
+		alert(
+			'Not available in your country'
+		)
+	}
 }

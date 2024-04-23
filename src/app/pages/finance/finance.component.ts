@@ -81,7 +81,7 @@ export class FinanceComponent {
 
 	private prepareData() {
 		const currentDate = new Date().getTime();
-		const halvingDate = new Date(2024, 3, 17).getTime();
+		const halvingDate = new Date(2024, 5, 1).getTime();
 		this.halving = Math.round((halvingDate - currentDate)/1000/60/60/24)
 	}
 
