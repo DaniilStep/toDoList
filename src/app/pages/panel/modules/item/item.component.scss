@@ -13,48 +13,52 @@
 	background-color: #fff;
 
 	.button{
-		position: absolute;
-		z-index: 10;
-		right: -10px;
+		// position: absolute;
+		// z-index: 10;
+		// right: -10px;
 
-		width: toRem(40);
-		height: toRem(40);
-		border-radius: 50%;
-		background-color: var(--orange);
+		// width: toRem(40);
+		// height: toRem(40);
+		// border-radius: 50%;
+		// background-color: var(--orange);
+
+		// display: flex;
+		// align-items: center;
+		// justify-content: center;
+
+		// transition: all 0.15s ease-in-out;
+
+		grid-row: 2/3;
+		grid-column: 4/5;
 
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		margin: 0 toRem(8);
+		font-size: toRem(20);
+		border-radius: toRem(8);
 
-		transition: all 0.15s ease-in-out;
+		background-color: #fff;
 
 		i{
-			color: #fff;
+			color: #000;
 		}
 
 		&:hover{
 			background-color: var(--orangeHover);
+			
+			i{
+				color: #fff;
+			}
 		}
 
 		&:active{
 			background-color: var(--orangeActive);
+			
+			i{
+				color: #fff;
+			}
 		}
-	}
-
-	.hide{
-		display: none;
-	}
-
-	.card__change{
-		top: toRem(-12);
-	}
-
-	.card__accept{
-		top: toRem(40);
-	}
-
-	.card__delete{
-		top: toRem(90);
 	}
 	
 	.card__img{
@@ -111,7 +115,7 @@
 
 		cursor: pointer;
 
-		font-size: 20px;
+		font-size: toRem(23);
 
 		transition: background-color 0.15s, color 0.15s;
 		border-radius: toRem(5);

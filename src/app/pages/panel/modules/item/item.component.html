@@ -1,27 +1,71 @@
 
 
 <div class="card">
-	@if (cardIsChanging) {
-		<button class="card__change button" (click)="toggleChange()">
-			<i class="pi pi-pencil"></i>
-		</button>
-	
+	@if (!cardIsChanging) {
+		<div class="card__img">
+			<img src={{card.source}} alt="img">
+		</div>
+		<div class="card__title">
+			<span>
+				{{card.title}}
+			</span>
+		</div>
+		<div class="card__price">
+			{{card.price}} €
+		</div>
+		<div class="card__cart" (click)="addToBasket()">
+			<i class="pi pi-shopping-cart"></i>
+		</div>
+		<!-- @if (cardIsChanging) {
+			
+		}
+		@else {
+			
+		} -->
 	}
-	<div class="card__img">
-		<img src={{card.source}} alt="img">
-	</div>
-	<div class="card__title">
-		<span>
-			{{card.title}}
-		</span>
-	</div>
-	<div class="card__price">
-		{{card.price}} €
-	</div>
-	<div class="card__cart" (click)="addToBasket()">
-		<i class="pi pi-shopping-cart"></i>
-	</div>
+	@else {
+		@if (!isChanging) {
+			<div class="card__img">
+				<img src={{card.source}} alt="img">
+			</div>
+			<div class="card__title">
+				<span>
+					{{card.title}}
+				</span>
+			</div>
+			<div class="card__price">
+				{{card.price}} €
+			</div>
+			<button class="card__change button" (click)="toggleChange()">
+				<i class="pi pi-pencil"></i>
+			</button>
+		}
+		@else {
+			<form [formGroup]="changeCardForm">
+				<input class="card__img" formControlName="source">
+				<input class="card__title" formControlName="title">
+				<input class="card__price" formControlName="price">
+				<button class="card__change button" (click)="toggleChange()">
+					<i class="pi pi-pencil"></i>
+				</button>
+				<button class="card__accept button" (click)="changeCard()">
+					<i class="pi pi-check"></i>
+				</button>
+				<button class="card__delete button" (click)="deleteCard()">
+					<i class="pi pi-times"></i>
+				</button>
+			</form>
+		}
+		
+	}
+	
 </div>
+
+
+
+
+
+
 
 <!-- 
 	@if (!isChanging) {
