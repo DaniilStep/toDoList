@@ -35,12 +35,16 @@ main{
 
 		.center{
 			grid-row: 1/2;
-			grid-column: 2/3;
-			border: 1px solid #000;
+			grid-column: 2/4;
+			padding-top: toRem(20);
+
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
 
 			.settings{
 				
-				padding-top: toRem(20);
+				// padding-top: toRem(20);
 				
 				display: flex;
 				align-items: center;
@@ -55,6 +59,35 @@ main{
 					&:hover{
 						transform: rotate(90deg);
 					}
+				}
+			}
+
+			.search{
+				display: flex;
+				align-items: center;
+
+				.search__field{
+					border-radius: toRem(30);
+					width: toRem(200);
+					margin-right: toRem(20);
+					background-color: #d9d9d9;
+					height: toRem(40);
+					color: #6a6a6a;
+
+					display: flex;
+					align-items: center;
+					padding: 0 toRem(20);
+				}
+
+				.search__button{
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					border-radius: 50%;
+					width: toRem(40);
+					background-color: #d9d9d9;
+					height: toRem(40);
+					color: #6a6a6a;
 				}
 			}
 		}

@@ -15,6 +15,7 @@ export class PanelComponent implements OnInit {
 	// basket$!: Observable<Cards[]>;
 
 	cards!: Cards[];
+	filteredCards!: Cards[];
 
 	cardsTest!: Cards[];
 
@@ -22,15 +23,23 @@ export class PanelComponent implements OnInit {
 
 	cardIsChanging: boolean = false;
 
+	cardIsFiltering: boolean = false;
+
 	basket: Cards[] | undefined;
 
 	addCardForm!: FormGroup;
+
+	filterCardForm!: FormGroup;
 
 	private createForm() {
 		this.addCardForm = this.fb.group({
 			'source': ['', [Validators.required]],
 			'title': ['', [Validators.required]],
 			'price': [, [Validators.required]],
+		});
+
+		this.filterCardForm = this.fb.group({
+			'title': ['', [Validators.required]]
 		})
 	}
 
@@ -74,4 +83,23 @@ export class PanelComponent implements OnInit {
 	public toggleChange() {
 		this.cardIsChanging = !this.cardIsChanging;
 	}
-}
+
+	public test() {
+		alert('not working yet')
+	}
+
+	public filterCards() {
+		if (!this.filterCardForm.valid) return;
+
+		this.cardIsFiltering = true;
+
+		const data = this.filterCardForm.value;
+
+		this.filteredCards = this.cards.filter(val => val.title.includes(data.title));
+	}
+
+	public clear() {
+		this.cardIsFiltering = false;
+		this.filterCardForm.controls['title'].setValue('');
+	}
+} 

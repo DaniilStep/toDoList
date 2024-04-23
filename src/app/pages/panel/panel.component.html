@@ -10,7 +10,15 @@
 					<i class="pi pi-cog"></i>
 				</button>
 			</div>
-			<div class="search"></div>
+			<form class="search" [formGroup]="filterCardForm">
+				<input class="search__field" placeholder="search" formControlName="title">
+				<button class="search__button" (click)="filterCards()">
+					<i class="pi pi-search"></i>
+				</button>
+			</form>
+			@if (cardIsFiltering) {
+				<button class="clear" (click)="clear()">clear</button>
+			}
 		</div>
 		<div class="basket">
 			<button routerLink="/panel/card">
@@ -22,10 +30,25 @@
 				}
 			</button>
 		</div>
-		@for (item of cards; track $index) {
-			<app-item (onAddToBasket)="addToBasket($event)"
-			[cardIsChanging]="cardIsChanging"
-			[card]="item"></app-item>
+		@if (!cardIsFiltering) {
+			@for (item of cards; track $index) {
+				<app-item (onAddToBasket)="addToBasket($event)"
+				[cardIsChanging]="cardIsChanging"
+				[card]="item"></app-item>
+			}
 		}
+		@else {
+			@if (filteredCards.length >= 1) {
+				@for (item of filteredCards; track $index) {
+					<app-item (onAddToBasket)="addToBasket($event)"
+					[cardIsChanging]="cardIsChanging"
+					[card]="item"></app-item>
+				}
+			}
+			@else {
+				<p>no data</p>
+			}
+		}
+		
 	</div>
 </main>
