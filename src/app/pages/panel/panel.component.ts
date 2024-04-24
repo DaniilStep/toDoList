@@ -51,7 +51,7 @@ export class PanelComponent implements OnInit {
 	// 	this.cards$ = this.PanelService.getCards(Path.cards);
 	// }
 
-	private getData() {
+	public getData() {
 		this.PanelService.getCards(Path.cards).pipe(
 			first()
 		).subscribe(val => this.cards = val);
@@ -80,6 +80,19 @@ export class PanelComponent implements OnInit {
 		});
 	}
 
+	public addItem() {
+		const card = {
+			source: 'source',
+			title: 'title',
+			price: 20,
+			isChanging: false
+		}
+
+		this.PanelService.addCard(Path.cards, card).pipe(
+			first()
+		).subscribe(() => this.getData())
+	}
+
 	public toggleChange() {
 		this.cardIsChanging = !this.cardIsChanging;
 	}
@@ -102,4 +115,4 @@ export class PanelComponent implements OnInit {
 		this.cardIsFiltering = false;
 		this.filterCardForm.controls['title'].setValue('');
 	}
-} 
+}

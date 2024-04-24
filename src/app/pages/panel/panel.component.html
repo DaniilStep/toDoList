@@ -33,6 +33,7 @@
 		@if (!cardIsFiltering) {
 			@for (item of cards; track $index) {
 				<app-item (onAddToBasket)="addToBasket($event)"
+				(onChange)="getData()"
 				[cardIsChanging]="cardIsChanging"
 				[card]="item"></app-item>
 			}
@@ -41,6 +42,7 @@
 			@if (filteredCards.length >= 1) {
 				@for (item of filteredCards; track $index) {
 					<app-item (onAddToBasket)="addToBasket($event)"
+					(onChange)="getData()"
 					[cardIsChanging]="cardIsChanging"
 					[card]="item"></app-item>
 				}
@@ -50,7 +52,7 @@
 			}
 		}
 		<div class="new">
-			<i class="pi pi-plus"></i>
+			<i class="pi pi-plus" (click)="addItem()"></i>
 		</div>
 	</div>
 </main>

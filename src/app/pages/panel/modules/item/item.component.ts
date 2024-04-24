@@ -35,10 +35,11 @@ export class ItemComponent {
 		this.onAddToBasket.emit(this.card);
 
 		// https://www.conventionalcommits.org/ru/v1.0.0/
-		// Не работает отображение миниатюры в корзине
 		// angular material
 		// primeNG
 	}
+
+	@Output() onChange: EventEmitter<Cards> = new EventEmitter();
 
 	public changeCard() {
 
@@ -46,13 +47,16 @@ export class ItemComponent {
 
 		this.PanelService.changeCard(Path.cards, data, this.card.id).pipe(
 			first()
-		).subscribe(() => this.isChanging = false);
+		).subscribe(() => {
+			this.isChanging = false;
+			this.onChange.emit();
+		});
 	}
 
 	public deleteCard() {
 		this.PanelService.deleteCard(Path.cards, this.card.id).pipe(
 			first()
-		).subscribe()
+		).subscribe(() => this.onChange.emit())
 	}
 
 	public toggleChange() {

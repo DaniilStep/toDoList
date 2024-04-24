@@ -26,7 +26,7 @@
 		// align-items: center;
 		// justify-content: center;
 
-		// transition: all 0.15s ease-in-out;
+		
 
 		grid-row: 2/3;
 		grid-column: 4/5;
@@ -39,6 +39,8 @@
 		border-radius: toRem(8);
 
 		background-color: #fff;
+
+		transition: background-color 0.15s ease-in-out;
 
 		i{
 			color: #000;
@@ -180,10 +182,3 @@
 		}
 	}
 }
-
-
-//  https://static.zara.net/assets/public/d268/496f/76184e0db721/d7e089960fe6/09065412555-e1/09065412555-e1.jpg?ts=1710780212063&w=434
-
-// Morendo capo 
-
-// 29.90 EUR

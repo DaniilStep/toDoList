@@ -12,6 +12,7 @@ main{
 
 	.wrapper{
 		width: toRem(900);
+		margin-bottom: toRem(50);
 		display: grid;
 		grid-template-rows: 80px repeat(auto-fill, toRem(300));
 		grid-template-columns: repeat(4, 1fr);
@@ -175,6 +176,18 @@ main{
 				font-size: 2rem;
 				font-weight: 600;
 				color: #fff;
+
+				cursor: pointer;
+
+				transition: background-color 0.2s ease;
+
+				&:hover{
+					background-color: var(--orangeHover);
+				}
+
+				&:active{
+					background-color: var(--orangeActive);
+				}
 			}
 		}
 	}
