@@ -85,7 +85,6 @@ export class PanelComponent implements OnInit {
 			source: 'source',
 			title: 'title',
 			price: 20,
-			isChanging: false
 		}
 
 		this.PanelService.addCard(Path.cards, card).pipe(

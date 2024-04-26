@@ -3,7 +3,6 @@ export interface Cards{
 	source: string,
 	title: string,
 	price: number,
-	isChanging: boolean,
 }
 
 export type CardsCreate = Omit<Cards, 'id'>

@@ -53,7 +53,6 @@ export class SettingsComponent implements OnInit {
 	}
 
 	public toggleChange(i: Cards) {
-		i.isChanging = !i.isChanging;
 
 		const { title, source, price } = i;
 
