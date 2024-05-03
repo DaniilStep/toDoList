@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PanelService } from './services/panel.service';
-import { Observable, first } from 'rxjs';
-import { Cards, CardsCreate, Path } from './models/cards.model';
+import { Observable, first, zip } from 'rxjs';
+import { Cards, Path, FilterProducts, cardFilters, cardFilters2 } from './models/cards.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
@@ -11,25 +11,29 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './panel.component.scss'
 })
 export class PanelComponent implements OnInit {
-	// cards$!: Observable<Cards[]>;
-	// basket$!: Observable<Cards[]>;
+
+	cards$!: Observable<Cards[]>;
+	cardsTest$!: Observable<Cards[]>;
+	finalCards$!: Observable<Cards[]>;
+
+	filters: string[] = cardFilters2;
+	selectedFilter: string = 'All';
 
 	cards!: Cards[];
 	filteredCards!: Cards[];
-
 	cardsTest!: Cards[];
+	finalCards!: Cards[];
+	basket: Cards[] | undefined;
 
 	cardComponent!: Cards;
 
 	cardIsChanging: boolean = false;
-
 	cardIsFiltering: boolean = false;
 
-	basket: Cards[] | undefined;
-
 	addCardForm!: FormGroup;
-
 	filterCardForm!: FormGroup;
+
+	currentFilter: FilterProducts = FilterProducts.all;
 
 	private createForm() {
 		this.addCardForm = this.fb.group({
@@ -47,19 +51,23 @@ export class PanelComponent implements OnInit {
 		this.createForm();
 	}
 
-	// private getData() {
-	// 	this.cards$ = this.PanelService.getCards(Path.cards);
+	// public getTestProducts() {
+	// 	this.PanelService.getCards(Path.test).pipe(
+	// 		first()
+	// 	).subscribe(val => this.cardsTest = val);
 	// }
 
 	public getData() {
 		this.PanelService.getCards(Path.cards).pipe(
 			first()
 		).subscribe(val => this.cards = val);
-	}
 
-	// private getBasket() {
-	// 	this.basket$ = this.PanelService.getCards(Path.basket);
-	// }
+		this.PanelService.getCards(Path.test).pipe(
+			first()
+		).subscribe(val => this.cardsTest = val);
+
+		// this.filteringProducts();
+	}
 
 	private getBasket() {
 		this.PanelService.getCards(Path.basket).pipe(
@@ -70,6 +78,7 @@ export class PanelComponent implements OnInit {
 	ngOnInit(): void {
 		this.getData();	
 		this.getBasket();
+		this.asyncTest();
 	}
 
 	public addToBasket(card: Cards) {
@@ -113,5 +122,64 @@ export class PanelComponent implements OnInit {
 	public clear() {
 		this.cardIsFiltering = false;
 		this.filterCardForm.controls['title'].setValue('');
+	}
+
+	// public getTestProducts() {
+	// 	this.PanelService.getCards(Path.test).pipe(
+	// 		first()
+	// 	).subscribe(val => this.cardsTest = val);
+	// }
+
+	// public filteringProducts() {
+	// 	if (this.currentFilter === FilterProducts.all) {
+	// 		this.finalCards = Object.assign(this.cards, this.cardsTest);
+	// 	};
+	// 	console.log(this.finalCards)
+	// 	console.log(this.cards)
+	// }
+
+	// public asyncTest() {
+	// 	this.cards$ = this.PanelService.getCards(Path.cards);
+	// 	this.cardsTest$ = this.PanelService.getCards(Path.test);
+
+	// 	if (this.currentFilter === 0) {
+	// 		zip([this.cards$, this.cardsTest$]).subscribe(([arr1, arr2]) => {
+	// 			this.finalCards = [...arr1, ...arr2];
+	// 		});
+	// 	}
+	// 	else if (this.currentFilter === 1) {
+	// 		this.finalCards = this.cards
+	// 	}
+	// 	else if (this.currentFilter === 2) {
+	// 		this.finalCards = this.cardsTest;
+	// 	}
+	// }
+
+	public asyncTest() {
+		this.cards$ = this.PanelService.getCards(Path.cards);
+		this.cardsTest$ = this.PanelService.getCards(Path.test);
+
+		if (this.selectedFilter == FilterProducts.all) {
+			zip([this.cards$, this.cardsTest$]).subscribe(([arr1, arr2]) => {
+				this.finalCards = [...arr1, ...arr2];
+			});
+		}
+		else if (this.selectedFilter == FilterProducts.men) {
+			this.finalCards = this.cards
+		}
+		else if (this.selectedFilter == FilterProducts.women) {
+			this.finalCards = this.cardsTest;
+		}
+	}
+
+	// public changeFilter(data: FilterProducts) {
+	// 	this.currentFilter = data;
+
+	// 	this.asyncTest()
+	// }
+
+	public onSelectFilter(i: string) {
+		this.selectedFilter = i;
+		this.asyncTest()
 	}
 }

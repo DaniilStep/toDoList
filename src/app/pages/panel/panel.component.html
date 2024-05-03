@@ -30,10 +30,20 @@
 				}
 			</button>
 		</div>
+		<div class="filters">
+			<div class="filters__wrapper">
+				@for (item of filters; track $index) {
+					<button (click)="onSelectFilter(item)" [class.orange]="selectedFilter == item">{{item}}</button>
+				}
+				<!-- <button class="filters__all" [class.orange]="true" (click)="changeFilter(0)">All</button>
+				<button class="filters__man" (click)="changeFilter(1)">Men</button>
+				<button class="filters__woman" (click)="changeFilter(2)">Women</button> -->
+			</div>
+		</div>
 		@if (!cardIsFiltering) {
-			@for (item of cards; track $index) {
+			@for (item of finalCards; track $index) {
 				<app-item (onAddToBasket)="addToBasket($event)"
-				(onChange)="getData()"
+				(onChange)="asyncTest()"
 				[cardIsChanging]="cardIsChanging"
 				[card]="item"></app-item>
 			}
@@ -42,7 +52,7 @@
 			@if (filteredCards.length >= 1) {
 				@for (item of filteredCards; track $index) {
 					<app-item (onAddToBasket)="addToBasket($event)"
-					(onChange)="getData()"
+					(onChange)="asyncTest()"
 					[cardIsChanging]="cardIsChanging"
 					[card]="item"></app-item>
 				}
@@ -51,8 +61,10 @@
 				<p>no data</p>
 			}
 		}
-		<div class="new">
-			<i class="pi pi-plus" (click)="addItem()"></i>
-		</div>
+		@if (cardIsChanging) {
+			<div class="new">
+				<i class="pi pi-plus" (click)="addItem()"></i>
+			</div>
+		}
 	</div>
 </main>
