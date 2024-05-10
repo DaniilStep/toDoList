@@ -22,6 +22,7 @@ export class ItemComponent {
 			'source': ['', [Validators.required]],
 			'title': ['', [Validators.required]],
 			'price': [, [Validators.required]],
+			'sex': [, [Validators.required]]
 		})
 	}
 
@@ -45,7 +46,7 @@ export class ItemComponent {
 
 		const data = this.changeCardForm.value;
 
-		this.PanelService.changeCard(Path.cards, data, this.card.id).pipe(
+		this.PanelService.changeCard(Path.clothes, data, this.card.id).pipe(
 			first()
 		).subscribe(() => {
 			this.isChanging = false;
@@ -54,7 +55,7 @@ export class ItemComponent {
 	}
 
 	public deleteCard() {
-		this.PanelService.deleteCard(Path.cards, this.card.id).pipe(
+		this.PanelService.deleteCard(Path.clothes, this.card.id).pipe(
 			first()
 		).subscribe(() => this.onChange.emit())
 	}
@@ -62,11 +63,12 @@ export class ItemComponent {
 	public toggleChange() {
 		this.isChanging = !this.isChanging;
 
-		const { source, title, price } = this.card;
+		const { source, title, price, sex } = this.card;
 		this.changeCardForm.patchValue({
 			source,
 			title,
-			price
+			price,
+			sex
 		});
 	}
 }

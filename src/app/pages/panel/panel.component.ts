@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PanelService } from './services/panel.service';
 import { Observable, first, zip } from 'rxjs';
-import { Cards, Path, FilterProducts, cardFilters, cardFilters2 } from './models/cards.model';
+import { Cards, Path, FilterProducts, cardFilters2 } from './models/cards.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
@@ -24,6 +24,10 @@ export class PanelComponent implements OnInit {
 	cardsTest!: Cards[];
 	finalCards!: Cards[];
 	basket: Cards[] | undefined;
+
+	clothes!: Cards[];
+	// sortedClothes!: Cards[];
+	allClothes!: Cards[];
 
 	cardComponent!: Cards;
 
@@ -66,7 +70,11 @@ export class PanelComponent implements OnInit {
 			first()
 		).subscribe(val => this.cardsTest = val);
 
-		// this.filteringProducts();
+		this.PanelService.getCards(Path.clothes).pipe(
+			first()
+		).subscribe(val => {
+			this.allClothes = this.clothes = val;
+		});
 	}
 
 	private getBasket() {
@@ -78,7 +86,7 @@ export class PanelComponent implements OnInit {
 	ngOnInit(): void {
 		this.getData();	
 		this.getBasket();
-		this.asyncTest();
+		// this.asyncTest();
 	}
 
 	public addToBasket(card: Cards) {
@@ -94,9 +102,10 @@ export class PanelComponent implements OnInit {
 			source: 'source',
 			title: 'title',
 			price: 20,
+			sex: 'men'
 		}
 
-		this.PanelService.addCard(Path.cards, card).pipe(
+		this.PanelService.addCard(Path.clothes, card).pipe(
 			first()
 		).subscribe(() => this.getData())
 	}
@@ -116,7 +125,7 @@ export class PanelComponent implements OnInit {
 
 		const data = this.filterCardForm.value;
 
-		this.filteredCards = this.cards.filter(val => val.title.includes(data.title));
+		this.filteredCards = this.clothes.filter(val => val.title.includes(data.title));
 	}
 
 	public clear() {
@@ -124,62 +133,38 @@ export class PanelComponent implements OnInit {
 		this.filterCardForm.controls['title'].setValue('');
 	}
 
-	// public getTestProducts() {
-	// 	this.PanelService.getCards(Path.test).pipe(
-	// 		first()
-	// 	).subscribe(val => this.cardsTest = val);
-	// }
-
-	// public filteringProducts() {
-	// 	if (this.currentFilter === FilterProducts.all) {
-	// 		this.finalCards = Object.assign(this.cards, this.cardsTest);
-	// 	};
-	// 	console.log(this.finalCards)
-	// 	console.log(this.cards)
-	// }
-
 	// public asyncTest() {
 	// 	this.cards$ = this.PanelService.getCards(Path.cards);
 	// 	this.cardsTest$ = this.PanelService.getCards(Path.test);
 
-	// 	if (this.currentFilter === 0) {
+	// 	if (this.selectedFilter == FilterProducts.all) {
 	// 		zip([this.cards$, this.cardsTest$]).subscribe(([arr1, arr2]) => {
 	// 			this.finalCards = [...arr1, ...arr2];
 	// 		});
 	// 	}
-	// 	else if (this.currentFilter === 1) {
+	// 	else if (this.selectedFilter == FilterProducts.men) {
 	// 		this.finalCards = this.cards
 	// 	}
-	// 	else if (this.currentFilter === 2) {
+	// 	else if (this.selectedFilter == FilterProducts.women) {
 	// 		this.finalCards = this.cardsTest;
 	// 	}
 	// }
 
-	public asyncTest() {
-		this.cards$ = this.PanelService.getCards(Path.cards);
-		this.cardsTest$ = this.PanelService.getCards(Path.test);
-
-		if (this.selectedFilter == FilterProducts.all) {
-			zip([this.cards$, this.cardsTest$]).subscribe(([arr1, arr2]) => {
-				this.finalCards = [...arr1, ...arr2];
-			});
-		}
-		else if (this.selectedFilter == FilterProducts.men) {
-			this.finalCards = this.cards
-		}
-		else if (this.selectedFilter == FilterProducts.women) {
-			this.finalCards = this.cardsTest;
-		}
-	}
-
-	// public changeFilter(data: FilterProducts) {
-	// 	this.currentFilter = data;
-
-	// 	this.asyncTest()
-	// }
-
 	public onSelectFilter(i: string) {
 		this.selectedFilter = i;
-		this.asyncTest()
+		// this.asyncTest();
+		this.sortClothes();
+	}
+
+	public sortClothes() {
+		if (this.selectedFilter == FilterProducts.men) {
+			this.clothes = this.allClothes.filter(val => val.sex === 'men');
+		}
+		else if (this.selectedFilter == FilterProducts.women) {
+			this.clothes = this.allClothes.filter(val => val.sex === 'women');
+		}
+		else {
+			this.clothes = this.allClothes.sort((a, b) => b.price - a.price)
+		}
 	}
 }

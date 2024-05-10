@@ -35,16 +35,13 @@
 				@for (item of filters; track $index) {
 					<button (click)="onSelectFilter(item)" [class.orange]="selectedFilter == item">{{item}}</button>
 				}
-				<!-- <button class="filters__all" [class.orange]="true" (click)="changeFilter(0)">All</button>
-				<button class="filters__man" (click)="changeFilter(1)">Men</button>
-				<button class="filters__woman" (click)="changeFilter(2)">Women</button> -->
 			</div>
 		</div>
 		@if (!cardIsFiltering) {
-			@for (item of finalCards; track $index) {
+			@for (item of clothes; track $index) {
 				<app-item (onAddToBasket)="addToBasket($event)"
-				(onChange)="asyncTest()"
 				[cardIsChanging]="cardIsChanging"
+				(onChange)="getData()"
 				[card]="item"></app-item>
 			}
 		}
@@ -52,8 +49,8 @@
 			@if (filteredCards.length >= 1) {
 				@for (item of filteredCards; track $index) {
 					<app-item (onAddToBasket)="addToBasket($event)"
-					(onChange)="asyncTest()"
 					[cardIsChanging]="cardIsChanging"
+					(onChange)="getData()"
 					[card]="item"></app-item>
 				}
 			}

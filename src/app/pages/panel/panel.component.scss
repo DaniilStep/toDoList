@@ -12,6 +12,7 @@ main{
 
 	.wrapper{
 		width: toRem(900);
+		padding-top: toRem(20);
 		margin-bottom: toRem(50);
 		display: grid;
 		grid-template-rows: toRem(80) toRem(30) repeat(auto-fill, toRem(300));
