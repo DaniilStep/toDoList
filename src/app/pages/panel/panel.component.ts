@@ -12,9 +12,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class PanelComponent implements OnInit {
 
-	cards$!: Observable<Cards[]>;
-	cardsTest$!: Observable<Cards[]>;
-	finalCards$!: Observable<Cards[]>;
+	// cards$!: Observable<Cards[]>;
+	// cardsTest$!: Observable<Cards[]>;
+	// finalCards$!: Observable<Cards[]>;
 
 	filters: string[] = cardFilters2;
 	selectedFilter: string = 'All';

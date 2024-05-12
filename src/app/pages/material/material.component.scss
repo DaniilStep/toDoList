@@ -1,7 +1,11 @@
 @import '../../../functions.scss';
 
 main{
-	margin: toRem(30) toRem(50);
+	margin: 0 toRem(50);
+	padding: toRem(30) 0;
+	border-top-style: solid;
+	border-color: #000;
+	border-width: 1px;
 
 	.wrapper{
 
