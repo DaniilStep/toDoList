@@ -1,0 +1,18 @@
+<div class="container">
+	@if (images && images.length > 0) {
+		@for (i of images; track $index) {
+			<img src="{{i.src}}" alt="{{i.alt}}" [ngClass]="{active: selectedIndex === $index}">
+		}
+		<div class="dots">
+			@for (dot of images; track $index) {
+				<span class="dot" (click)="selectImage($index)" [ngClass]="{active: selectedIndex === $index}"></span>
+			}
+		</div>
+		<div class="forward" (click)="nextImage()">
+			<i class="pi pi-chevron-right"></i>
+		</div>
+		<div class="backward" (click)="prewImage()">
+			<i class="pi pi-chevron-left"></i>
+		</div>
+	}
+</div>

@@ -19,7 +19,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 	FormsModule,
 	ReactiveFormsModule,
 	HttpClientModule,
-	  HeaderModule,
+	HeaderModule,
 
   ],
   bootstrap: [AppComponent],

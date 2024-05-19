@@ -1,0 +1,85 @@
+.container{
+	width: 400px;
+	position: relative;
+	margin: auto;
+	text-align: center;
+	border-radius: 15px;
+	overflow: hidden;
+
+	img{
+		display: none;
+		border-radius: 15px;
+	}
+
+	img.active{
+		display: block;
+		width: 100%;
+	}
+
+	.dots{
+		position: absolute;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		display: flex;
+		justify-content: center;
+		margin-bottom: 1rem;
+
+		.dot{
+			cursor: pointer;
+			height: 13px;
+			width: 13px;
+			margin: 0 5px;
+			background-color: #fff;
+			border-radius: 50%;
+			display: inline-block;
+			transition: opacity 0.6s;
+			opacity: 0.5;
+		}
+
+		.active, .dot:hover{
+			opacity: 1;
+		}
+	}
+
+	.forward, .backward{
+		position: absolute;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 15%;
+		opacity: 0.4;
+
+		transition: opacity 0.3s;
+
+		color: #000000;
+		font-size: 1.3rem;
+
+		i{
+			// border: 2px solid #000000;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			background-color: #8f8f8f;
+
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		&:hover{
+			opacity: 1;
+		}
+	}
+
+	.forward{
+		top: 0;
+		right: 0;
+	}
+
+	.backward{
+		top: 0;
+		left: 0;
+	}
+}

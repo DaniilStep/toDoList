@@ -6,6 +6,7 @@ import { MaterialComponent } from './material.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { CarouselModule } from './modules/carousel/carousel.module';
 
 
 
@@ -19,7 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
 	  MaterialRoutingModule,
 	  MatCheckboxModule,
 	  MatCardModule,
-	  MatButtonModule
+	  MatButtonModule,
+	  CarouselModule
   ]
 })
 export class MaterialModule { }
