@@ -40,7 +40,7 @@ export class CarouselComponent implements OnInit {
 		this.selectedIndex = image
 	}
 
-	public prewImage() {
+	public prevImage() {
 		if (this.selectedIndex == 0) {
 			this.selectedIndex = this.images.length - 1;
 		} else {

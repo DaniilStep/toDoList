@@ -9,4 +9,5 @@ export interface Price{
 export enum Currencies{
 	BTCUSD = 'BTC-USD',
 	RUBUSD = 'USD-RUB',
+	NOTUSD = 'NOT-USD'
 }

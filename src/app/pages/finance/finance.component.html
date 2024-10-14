@@ -51,10 +51,14 @@
 					<span>special</span>
 				</div>
 				<div class="special__common">
-					<p>0.0022</p>
-					<div>{{(firstSpecialAmount$ | async) | number: '0.0-0'}}</div>
-					<p>0.00375</p>
-					<div>{{(secondSpecialAmount$ | async) | number: '0.0-0'}}</div>
+					<p>!-USD</p>
+					<div>{{(notUsdRate$ | async)?.data?.amount| currency : 'USD' : 'symbol' : '0.0-6'}}</div>
+					<p>5510 !</p>
+					<div>{{(secondSpecialAmount$ | async) | number: '0.0-2'}}</div>
+					<p>win</p>
+					<!-- <div>{{(thirdSpecialAmount$ | async) | number: '0.0-2'}}</div> -->
+					<!-- <div>{{(btcUsdSell$ | async) | number: '0.0-2'}}</div> -->
+					<div>{{(notProfit$ | async) | number: '0.0-2'}}</div>
 				</div>
 			</div>
 		</div>

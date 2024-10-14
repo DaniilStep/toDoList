@@ -25,6 +25,7 @@ export class FinanceComponent {
 
 	btcUsdRate$!: Observable<Price>;
 	usdRubRate$!: Observable<Price>;
+	notUsdRate$!: Observable<Price>;
 	btcRubRate$!: Observable<number>;
 	
 	usdAmount$!: Observable<number>;
@@ -33,11 +34,14 @@ export class FinanceComponent {
 	firstSpecialAmount$!: Observable<number>;
 	secondSpecialAmount$!: Observable<number>;
 	thirdSpecialAmount$!: Observable<number>;
+	btcUsdSell$!: Observable<number>;
+	notProfit$!: Observable<number>;
 
 	private getAmountFromService() {
 		this.cryptoAmount$ = this.financeApiService.getAmount();
 		this.btcUsdRate$ = this.financeApiService.getRate(Currencies.BTCUSD);
 		this.usdRubRate$ = this.financeApiService.getRate(Currencies.RUBUSD);
+		this.notUsdRate$ = this.financeApiService.getRate(Currencies.NOTUSD);
 	}
 
 	private assignValue() {
@@ -70,9 +74,31 @@ export class FinanceComponent {
 			map(val => val * 0.0022)
 		);
 
-		this.secondSpecialAmount$ = this.btcRubRate$.pipe(
-			map(val => val * 0.00375)
+		// this.secondSpecialAmount$ = this.btcRubRate$.pipe(
+		// 	map(val => val * 0.00375)
+		// );
+
+		this.secondSpecialAmount$ = this.notUsdRate$.pipe(
+			map(val => Number(val.data.amount) * 5510)
 		);
+
+		this.btcUsdSell$ = this.btcUsdRate$.pipe(
+			map(val => Number(val.data.amount) * 0.001)
+		);
+
+		this.notProfit$ = zip(
+			this.btcUsdSell$,
+			this.secondSpecialAmount$,
+		).pipe(
+			map(
+				([btc, not]) => not - btc
+			)
+		);
+
+		// this.secondSpecialAmount$ = zip(
+		// 	this.notUsdRate$,
+		// 	this.usdRubRate$
+		// ).pipe(([not, usd]) => Number(not.data.amount) * Number(usd.data.amount))
 
 		this.thirdSpecialAmount$ = this.btcRubRate$.pipe(
 			map(val => val * 0.00079668)

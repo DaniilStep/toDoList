@@ -7,11 +7,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderModule } from './ui/header/header.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
-    
   ],
   imports: [
    BrowserModule,
@@ -20,7 +20,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 	ReactiveFormsModule,
 	HttpClientModule,
 	HeaderModule,
-
+	BrowserAnimationsModule,
   ],
   bootstrap: [AppComponent],
   providers: [

@@ -13,4 +13,20 @@ main{
 			top: 0;
 		}
 	}
+
+	.animations{
+
+		button{
+			border: 1px solid #000;
+			padding: 10px 40px;
+		}
+
+		.block{
+			margin-top: 30px;
+			border: 1px solid #000;
+			max-width: 150px;
+			text-align: center;
+			padding: 10px 40px;
+		}
+	}
 }

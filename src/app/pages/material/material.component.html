@@ -15,4 +15,11 @@
 	<div class="carousel">
 		<app-carousel></app-carousel>
 	</div>
+	<div class="animations">
+		<button class="show" (click)="showBlock()">Click me</button>
+		<div class="block" [@fadeInOut]="isShown ? 'open' : 'close'">This block is visible</div>
+		<!-- @if (isShown) {
+			<div class="block" @fadeIn @fadeOut>This block is visible</div>
+		} -->
+	</div>
 </main>

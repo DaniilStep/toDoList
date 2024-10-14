@@ -35,7 +35,7 @@ export class ItemComponent {
 	public addToBasket() {
 		this.onAddToBasket.emit(this.card);
 
-		// https://www.conventionalcommits.org/ru/v1.0.0/
+		// https://www.conventionalcommits.org/ru/v1.0.0/`
 		// angular material
 		// primeNG
 	}

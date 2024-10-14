@@ -7,6 +7,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { CarouselModule } from './modules/carousel/carousel.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -21,7 +22,7 @@ import { CarouselModule } from './modules/carousel/carousel.module';
 	  MatCheckboxModule,
 	  MatCardModule,
 	  MatButtonModule,
-	  CarouselModule
+	  CarouselModule,
   ]
 })
 export class MaterialModule { }
